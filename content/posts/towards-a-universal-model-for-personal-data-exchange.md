@@ -75,14 +75,16 @@ In this model users share their data directly with Verifiers, often through web 
 
 ## The Framework: Three Essential Components
 
+![Three Components of Personal Data Exchange](./images/three-components.png)
+
 To enable seamless and secure personal data exchange, we need three critical components:
 
 1. **Rails**: These are the standards and mechanisms that enable secure, interoperable data exchange. Examples include protocols like OpenID (for Verifiable Credentials) or ISO standards for digital credentials (e.g. ISO 18013-5 mDL).
-2. **Data**: The structure and format of the data being exchanged. This includes verifiable credentials (e.g., JWTs, mobile documents) that ensure consistency and compatibility.
+2. **Credentials**: The structure and format of the data being exchanged. This includes verifiable credentials (e.g., JWTs, mobile documents) that ensure consistency and compatibility.
 3. **Trust**: The systems that verify the authenticity and reliability of the data. Mechanisms like digital signatures, X.509 certificates, or OpenID Federation ensure that all parties can trust the data and parties involved.
 
 ## Building the Infrastructure for the Future
 
 By combining these models and components, we can create a universal framework for personal data exchange. This framework would make data flows more efficient, transparent, and user-centric, striking a balance between privacy, security and user experience. With the right infrastructure in place, we can unlock the true potential of personal data while preserving individual privacy and autonomy.
 
-Now that we have set the context, we can dive deeper into each model and get practical on how to achieve a good outcome.
+In following articles, we'll explore these components in more detail as well as how they apply to the three models.
