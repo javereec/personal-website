@@ -1,6 +1,6 @@
 +++
 date = '2025-01-28T14:34:54+01:00'
-draft = true
+draft = false
 title = 'Towards a Universal Model for Personal Data Exchange'
 +++
 
