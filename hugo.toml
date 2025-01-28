@@ -1,0 +1,60 @@
+baseURL = 'https://janvereecken.com/'
+languageCode = 'en-gb'
+title = 'Jan Vereecken - Personal Website'
+theme='typo'
+
+[params]
+# Meta description
+description = "My personal website."
+
+# Appearance settings
+theme = 'auto'
+colorPalette = 'default'
+hideHeader = false
+
+
+# Intro on main page, content is markdown
+homeIntroTitle = 'Hi!'
+homeIntroContent = """
+I'm from Flanders, Belgium and I'm a domain expert in digital identity and digital credentials. I have a passion for understanding complex problems, decomposing them and finding solutions. I have held different positions, currently acting as the Chief Product Officer for Meeco.
+"""
+
+# Collection to display on home
+homeCollectionTitle = 'Posts'
+homeCollection = 'posts'
+
+# Lists parameters
+paginationSize = 100
+listSummaries = true
+listDateFormat = '2 Jan 2006'
+
+# Breadcrumbs
+breadcrumbs = true
+
+# Social icons
+[[params.social]]
+name = "linkedin"
+url = "https://www.linkedin.com/in/janvereecken/"
+
+[[params.social]]
+name = "github"
+url = "https://github.com/javereec"
+
+# Main menu pages
+[[params.menu]]
+name = "home"
+url = "/"
+
+[[params.menu]]
+name = "posts"
+url = "/posts"
+
+[[params.menu]]
+name = "about"
+url = "/about"
+
+# Syntax highlight on code blocks
+[markup]
+[markup.highlight]
+style = 'algol'
+
