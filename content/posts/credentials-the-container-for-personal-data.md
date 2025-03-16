@@ -4,12 +4,14 @@ draft = false
 title = 'Credentials - The Container for Personal Data'
 +++
 
-In this third part of our series on the universal model for personal data exchange, we examine credentials —the container for the data being transferred over the rails. We're going to dive deep into the technical details and absolutely nerd out, but this article is written to be accessible to a broad audience of tech-savvy readers, helping them form a clearer picture of what these credential formats look like.
+![credentials](./images/universal-model-credentials.png)
+
+In this third part of our series on the universal model for personal data exchange, we examine credentials —the container for the data being transferred over the rails. We're going to dive deep into the technical details and absolutely nerd out, but this article is written to be accessible to a broad audience of tech-savvy readers, helping you form a clearer picture of what these credential formats look like.
 
 You can find the previous installations of this series here:
 
-* [universal model for personal data exchange]({{< ref "towards-a-universal-model-for-personal-data-exchange" >}})
-* [laying the rails for personal data exchange]({{< ref "laying-the-rails-for-personal-data-exchange" >}})
+* [Part 1: Universal Model for Personal Eata Exchange]({{< ref "towards-a-universal-model-for-personal-data-exchange" >}})
+* [Part 2: Laying the Rails for Personal Data Exchange]({{< ref "laying-the-rails-for-personal-data-exchange" >}})
 
 ## Credentials
 
@@ -21,7 +23,7 @@ The credential is expressed in a credential format defined by the issuer. Creden
 
 There are multiple ways to represent credentials, each with trade-offs. The table below summarises key standards based credential formats that are either in production or have a clear roadmap for large-scale adoption.
 
-|                        | JWT       | SD-JWT    | JWT VC    | mdoc      |
+|                        | JWT       | SD-JWT VC | JWT VC    | mdoc      |
 | ---------------------- | --------- | --------- | --------- | --------- |
 | Format                 | JSON      | JSON      | JSON      | CBOR      |
 | Encoding               | Base64URL | Base64URL | Base64URL | Binary    |
@@ -42,7 +44,7 @@ In the next sections, we'll take a closer look at each of these formats.
 
 ### JSON Web Token (JWT)
 
-Specified in [RFC7519](https://datatracker.ietf.org/doc/html/rfc7519), each JWT consists of a header and a payload, separated by a dot. The payload contains the claims that make up the credential. A JWT can be secured using signatures as described in JSON Web Signatures [RFC 7515](https://datatracker.ietf.org/doc/html/rfc7515), and encrypted as described in JSON Web Encryption [RFC516](https://datatracker.ietf.org/doc/html/rfc7516).
+Specified in [RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519), each JWT consists of a header and a payload, separated by a dot. The payload contains the claims that make up the credential. A JWT can be secured using signatures as described in JSON Web Signatures [RFC 7515](https://datatracker.ietf.org/doc/html/rfc7515), and encrypted as described in JSON Web Encryption [RFC 7516](https://datatracker.ietf.org/doc/html/rfc7516).
 
 Below is an example of a JWT secured with JWS.
 
@@ -74,7 +76,7 @@ header.payload.signature
 The encoding applied in the above JWT is Base64URL. If we decode and format the header and payload, we can see the information stored within the JWT. This structure is intuitive to read (aside from some abbreviations), which is a major reason why developers enjoy working with it.
 
 
-```
+```json
 {
   "alg": "RS256",
   "typ": "JWT",
@@ -96,11 +98,11 @@ The encoding applied in the above JWT is Base64URL. If we decode and format the 
 }
 ```
 
-JWTs do not natively support the Issuer-Holder-Verifier model because a plain JWT, as shown above, isn't "bound" to a specific holder. Extensions such as Demonstrating Proof of Possession (DPoP) can be used to address this, but other credential formats have well-defined semantics for holder binding. In practice, plain JWTs are commonly used in two party models such as Issuer-Verifier and Holder-Verifier models, but not in three party models such as the Issuer-Holder-Verifier model.
+JWTs do not natively support the Issuer-Holder-Verifier model because a plain JWT, as shown above, isn't "bound" to a specific holder. Extensions such as [RFC 9499](https://www.rfc-editor.org/rfc/rfc9449.html) Demonstrating Proof of Possession (DPoP) can be used to address this, but other credential formats have well-defined semantics for holder binding. In practice, plain JWTs are commonly used in two party models such as Issuer-Verifier and Holder-Verifier models, but not in three party models such as the Issuer-Holder-Verifier model.
 
-### SD-JWT
+### SD-JWT VC
 
-JWT credentials lack a mechanism that allows a holder to selectively disclose claims from a signed JWT. To address this, the IETF has drafted Selective Disclosure for JWTs, also known as SD-JWT. This credential format uses hashes instead of claims in the JWT payload (for claims requiring selective disclosure) and places the disclosures in a new element.
+JWT credentials lack a mechanism that allows a holder to selectively disclose claims from a signed JWT. To address this, the IETF has drafted [Selective Disclosure for JWTs](https://datatracker.ietf.org/doc/draft-ietf-oauth-selective-disclosure-jwt/), also known as SD-JWT, and [SD-JWT-based Verifiable Credentials](https://datatracker.ietf.org/doc/draft-ietf-oauth-sd-jwt-vc/), known as SD-JWT VC. SD-JWT is more general purpose, while SD-JWT VC specifically specifies how to use this format for credentials. One of the biggest differences with JWTs is that this format uses hashes instead of claims in the payload (but only for claims requiring selective disclosure) and places the disclosures in a new element.
 
 The new structure for a signature-secured SD-JWT is:
 
@@ -110,7 +112,7 @@ header.payload.signature.disclosures
 
 Since the disclosures are not secured, the holder can choose which ones to include when presenting the credential to a verifier.
 
-Belw is an example of a Base64URL encoded SD-JWT.
+Belw is an example of a Base64URL encoded SD-JWT VC.
 
 ```
 eyJ0eXAiOiJ2YytzZC1qd3QiLCJhbGciOiJFUzI1NiIsImtpZCI6Im03SzFO
@@ -160,7 +162,7 @@ XpEMFR6OTZuQmZmIiwiYmlydGhkYXRlIiwiMTk2MC0wMS0yNCJd~
 
 After decoding and formatting, the header and payload look as follows.
 
-```
+```json
 {
   "typ": "vc+sd-jwt",
   "alg": "ES256",
@@ -214,7 +216,7 @@ This credential format is defined in [W3C’s Verifiable Credential Data Model v
 
 In the example below, we provide an example of a JWT-VC that is bound to a holder using the `cnf` claim and leave the `credentialSubject.id` claim undefined.
 
-```
+```json
 {
   "alg": "ES256",
   "kid": "m7K1NiWnYA8mcTP4v8DUd3uuPhiaorrvkXGoBGCDM5c",
@@ -278,9 +280,9 @@ The above JWT-VC also features the `cnf` claim that is used to contain the holde
 
 ### mdoc
 
-Mobile documents (mdoc) are defined in [ISO/IEC 18013-5](https://www.iso.org/standard/69084.html). They are being popularised by the adoption of Mobile Driving Licenses (mDL), but they can also be used other types of credentials.
+Mobile documents (mdoc) are defined in [ISO/IEC 18013-5](https://www.iso.org/standard/69084.html) Mobile driving licese (mDL) application. They are being popularised by the adoption of mDL, but they can also be used for other types of credentials.
 
-Mdoc uses [CBOR](https://datatracker.ietf.org/doc/html/rfc8949) encoding, which is a compact binary format. Since binary formats are not human-readable, the CBOR specification includes a diagnostic notation to facilitate discussion and debugging.
+Mdoc uses [RFC 8949](https://datatracker.ietf.org/doc/html/rfc8949) CBOR encoding, which is a compact binary format. Since binary formats are not human-readable, the CBOR specification includes a diagnostic notation to facilitate discussion and debugging.
 
 A Base64url encoded mdoc as issued via OpenID4VCI rails look like this:
 
