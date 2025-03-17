@@ -1,6 +1,6 @@
 baseURL = 'https://janvereecken.com/'
 languageCode = 'en-gb'
-title = 'Jan Vereecken - Personal Website'
+title = 'Anchored in Trust'
 theme='typo'
 
 [params]
@@ -16,7 +16,11 @@ hideHeader = false
 # Intro on main page, content is markdown
 homeIntroTitle = 'Hi!'
 homeIntroContent = """
-I'm from Flanders, Belgium and I'm a domain expert in digital identity and digital credentials. I have a passion for understanding complex problems, decomposing them and finding solutions. I have held different positions, currently acting as the Chief Product Officer for Meeco.
+My name is Jan Vereecken. I build enterprise-grade products for digital identity and digital credentials. With deep technical expertise, especially in standards to which I actively contribute, I transform complex problems into practical solutions. Currently, I lead product strategy and execution as Chief Product Officer at Meeco.
+
+Outside of work, I’m passionate about traveling, nature, wine, movies, reading, gaming, weightlifting, gardening, and walking. I live with my family in Flanders, Belgium.
+
+Opinions expressed here are my own.
 """
 
 # Collection to display on home
@@ -25,7 +29,7 @@ homeCollection = 'posts'
 
 # Lists parameters
 paginationSize = 100
-listSummaries = true
+listSummaries = false
 listDateFormat = '2 Jan 2006'
 
 # Breadcrumbs
