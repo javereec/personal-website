@@ -1,6 +1,5 @@
 +++
 date = '2025-04-13T17:00:00+01:00'
-draft = true
 title = 'The Overuse of Trust in Digital Identity'
 +++
 
