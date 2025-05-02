@@ -11,7 +11,7 @@ description = "My personal website."
 theme = 'auto'
 colorPalette = 'default'
 hideHeader = false
-
+toc = true
 
 # Intro on main page, content is markdown
 homeIntroTitle = 'Hi!'
