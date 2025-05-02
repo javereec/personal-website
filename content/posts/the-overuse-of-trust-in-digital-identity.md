@@ -77,7 +77,7 @@ But here’s the key point: these artefacts don’t convey trust, they convey as
 
 Whereas trust is situational, agent-specific, and dynamic, assurance is structural, objective, and static.
 
-## ~~Trust~~ Assurance Lists: Evidence, Not Decision
+## From Trust to Assurance Lists: Evidence, Not Decision
 
 Take the example of the EU Trusted List under eIDAS. It contains a set of qualified trust service providers who have been accredited under national supervision bodies. Being on the list means a provider has met the legal and technical requirements to issue certain types of credentials or signatures.
 
