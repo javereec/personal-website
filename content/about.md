@@ -1,3 +1,7 @@
+---
+title: About Jan Vereecken
+---
+
 Hi, I'm Jan and welcome to my personal space on the web! My life revolves around three core pillars: my family, my health, and my passion for work. These priorities guide everything I do and shape the person I am today. Beyond my professional interests, I'm an avid reader always on the lookout for learning something new. In my leisure time, you’ll often find me tinkering on a new project, watching a movie, lost in the world of games, in my garden, or enjoying fine (preferably Italian) wine and food. I also cherish moments spent flâneuring, exploring the world at my own pace and soaking in new experiences. This blend of personal and professional interests defines me and fuels my approach to the challenges and opportunities presented to me.
 
 **Contact**  
@@ -8,7 +12,7 @@ Hi, I'm Jan and welcome to my personal space on the web! My life revolves around
 
 ---
 
-## Resume
+## Profile
 
 ### Overview
 
